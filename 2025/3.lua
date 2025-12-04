@@ -1,25 +1,29 @@
-
-local banks = io.lines()
+local banks = io.input(arg[1]):read("a"):gmatch("%d+")
 local total = 0
-for bank in banks do
-  local first_max = math.mininteger
-  local max_index = -1
-  local i = 1
-  for digit in bank:gmatch("%d") do
-    if tonumber(digit) > first_max and i ~= #bank then
-      first_max = tonumber(digit)
-      max_index = i
-    end
-    i = i + 1
-  end
+local battery_count = 12
 
-  local second_max = math.mininteger
-  for j = max_index + 1,#bank do
-    if tonumber(bank:sub(j,j)) > second_max then
-      second_max = tonumber(bank:sub(j,j))
+-- recursive go brrr
+local function next_maxes(num_str, count, start_index)
+  if count <= 0 then return "" end
+
+  start_index = start_index or 1
+
+  local max_digit = math.mininteger
+  --print(#num_str - count + 1)
+  local last_index
+  for i = start_index, (#num_str - count + 1) do
+    if tonumber(num_str:sub(i, i)) > max_digit then
+      max_digit = tonumber(num_str:sub(i, i))
+      last_index = i
     end
+    
   end
-  total = total + tonumber(first_max .. second_max)
+  return max_digit .. next_maxes(num_str, count - 1, last_index + 1)
+end
+for bank in banks do
+  total = total + tonumber(next_maxes(bank, battery_count, 1))
+  --print(bank:sub(15,15))
+  --print(tonumber(next_maxes(bank, battery_count, 1)))
 end
 
 print(total)
