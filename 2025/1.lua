@@ -12,7 +12,7 @@ local line_iter = io.lines()
 local function move(x)
   if is_any_click then
     for i = 0, x, x/math.abs(x) do
-      if (cur_pos+i)%dial_size==00 and i ~= 0 then
+      if (cur_pos+i)%dial_size==0 and i ~= 0 then
         counter = counter+1
       end
     end
