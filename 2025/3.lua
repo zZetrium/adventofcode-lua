@@ -12,7 +12,7 @@ for bank in banks do
     end
     i = i + 1
   end
- -- print(first_max)
+
   local second_max = math.mininteger
   for j = max_index + 1,#bank do
     if tonumber(bank:sub(j,j)) > second_max then
