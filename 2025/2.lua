@@ -22,7 +22,7 @@ end
 
 
 local counter = 0
-local intervals_str = io.read("*all")
+local intervals_str = io.input(arg[1]):read("*all")
 
 local numbers = collect(intervals_str:gmatch("%d+"))
 for i = 1, #numbers - 1, 2 do
