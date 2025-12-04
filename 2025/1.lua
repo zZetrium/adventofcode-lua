@@ -7,7 +7,7 @@ local cur_pos = 50
 local dial_size = 100
 local counter = 0
 
-local line_iter = io.lines()
+local line_iter = io.input(arg[1]):lines()
 
 local function move(x)
   if is_any_click then
